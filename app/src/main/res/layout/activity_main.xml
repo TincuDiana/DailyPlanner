@@ -16,11 +16,7 @@
         android:fontFamily="casual"
         android:text="Daily Planner"
         android:textAlignment="center"
-<<<<<<< HEAD
         android:textColor="#673AB7"
-=======
-        android:textColor="#BB86FC"
->>>>>>> 787b8223b64e99a758335be3b88151188292f74c
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,10 +106,6 @@
         android:layout_marginTop="58dp"
         android:background="@drawable/button"
         android:text="Sign Up"
-<<<<<<< HEAD
-=======
-        android:textColor="@color/white"
->>>>>>> 787b8223b64e99a758335be3b88151188292f74c
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />

@@ -1,16 +1,3 @@
 <resources>
     <string name="app_name">DailyPlan2</string>
-<<<<<<< HEAD
-=======
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Log In</string>
-    <string name="action_sign_in_short">Log in</string>
-    <string name="action_sign_up">Sign Up</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
->>>>>>> 787b8223b64e99a758335be3b88151188292f74c
 </resources>

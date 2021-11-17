@@ -3,6 +3,7 @@ package com.example.dailyplan2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,10 +28,16 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordInput;
     TextView textViewResult;
     Button signUpButton;
+=======
+
+public class MainActivity extends AppCompatActivity {
+
+>>>>>>> 787b8223b64e99a758335be3b88151188292f74c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         firstNameInput = (EditText) findViewById(R.id.editTextTextPersonName);
          textViewResult = findViewById(R.id.editTextTextPersonName);
         lastNameInput = (EditText) findViewById(R.id.editTextTextPersonName2);
@@ -88,4 +95,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }*/
+=======
+    }
+>>>>>>> 787b8223b64e99a758335be3b88151188292f74c
 }

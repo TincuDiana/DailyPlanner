@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/Beatrice/Desktop/tincudiana-androidproject1-f6d3a9e7a2c7/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/IS/DailyPlan2/app/src/main/res/drawable/button.xml" value="0.1125" />
+        <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/IS/DailyPlan2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+=======
         <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/IS/DailyPlan2/app/src/main/res/drawable/button.xml" value="0.1125" />
         <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/IS/DailyPlan2/app/src/main/res/layout/activity_login.xml" value="0.18478260869565216" />
         <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/IS/DailyPlan2/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -10,6 +15,7 @@
         <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/ProiectIS/androidproject1/app/src/main/res/layout-w936dp/activity_login.xml" value="0.21" />
         <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/ProiectIS/androidproject1/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/diana/Desktop/D/An3/Sem1/ProiectIS/androidproject1/app/src/main/res/layout/activity_main.xml" value="0.22" />
+>>>>>>> 787b8223b64e99a758335be3b88151188292f74c
       </map>
     </option>
   </component>

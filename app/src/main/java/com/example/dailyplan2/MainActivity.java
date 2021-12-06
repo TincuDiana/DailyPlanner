@@ -12,15 +12,9 @@ import android.widget.TextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity" ;
-    String firstName;
-    String lastName;
-    String email;
-    String password;
     EditText firstNameInput;
     EditText lastNameInput;
     EditText emailInput;
@@ -32,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firstNameInput = (EditText) findViewById(R.id.editTextTextPersonName);
-         textViewResult = findViewById(R.id.editTextTextPersonName);
+        textViewResult = findViewById(R.id.editTextTextPersonName);
         lastNameInput = (EditText) findViewById(R.id.editTextTextPersonName2);
         emailInput = (EditText) findViewById(R.id.editTextTextEmailAddress);
         passwordInput = (EditText) findViewById(R.id.editTextTextPassword);
@@ -41,51 +35,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-                firstName = firstNameInput.getText().toString();
-                lastName = lastNameInput.getText().toString();
-                email = emailInput.getText().toString();
-                password = passwordInput.getText().toString();
-
-                sendPostRequestOnClick();
-
+                User newUser = new User(firstNameInput.getText().toString(),lastNameInput.getText().toString(),emailInput.getText().toString(),passwordInput.getText().toString());
+                Log.e(TAG,newUser.toString());
+                sendPostRequestOnClick(newUser,v);
+                v.setVisibility(View.GONE);
+                CalendarView view = new CalendarView();
             }
         });
     }
-    private void sendPostRequestOnClick(){
+    private void sendPostRequestOnClick(User newUser,View v){
         JsonPlaceHolderApi api = RetrofitUser.getRetrofitInstance().create(JsonPlaceHolderApi.class);
-        Call<User> call = api.getUserInformation(firstName,lastName,email,password);
+        //Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Log.e(TAG,newUser.toString());
+        Call<User> call = api.getUserInformation(newUser);
         call.enqueue(new Callback<User>() {
 
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.e(TAG,"Works ");
+                Log.e(TAG,"Works " + newUser.getFirstName() + newUser.getLastName());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.e(TAG,"on failure: " + t.getMessage());
+                Log.e(TAG,"on failure: ");
 
             }
         });
     }
-    /*private void createUser(){
-        User user = new User(firstName, lastName, email,password);
-       // Call<User> call = jsonPlaceHolderApi.createUser(user);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(!response.isSuccessful())
-                {
-                    textViewResult.setText(response.code());
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
-            }
-        });
-    }*/
 }

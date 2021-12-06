@@ -2,16 +2,20 @@ package com.example.dailyplan2;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.UUID;
+
 
 public class User {
-        private String firstName;
-        private String lastName;
+        private final UUID id;
+        private String firstname;
+        private String lastname;
         private String email;
         private String password;
 
         public User(String firstName, String lastName, String email, String password) {
-                this.firstName = firstName;
-                this.lastName = lastName;
+                this.id = UUID.randomUUID();
+                this.firstname = firstName;
+                this.lastname = lastName;
                 this.email = email;
                 this.password = password;
         }
@@ -33,11 +37,11 @@ public class User {
         }
 
         public String getFirstName() {
-                return firstName;
+                return firstname;
         }
 
         public String getLastName() {
-                return lastName;
+                return lastname;
         }
 
         public String getEmail() {
@@ -46,5 +50,9 @@ public class User {
 
         public String getPassword() {
                 return password;
+        }
+
+        public UUID getId() {
+                return id;
         }
 }

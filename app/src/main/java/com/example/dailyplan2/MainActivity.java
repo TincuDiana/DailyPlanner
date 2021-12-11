@@ -2,6 +2,7 @@ package com.example.dailyplan2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG,newUser.toString());
                 sendPostRequestOnClick(newUser,v);
                 v.setVisibility(View.GONE);
-                CalendarView view = new CalendarView();
+                setContentView(R.layout.layout_create_event);
+                Intent myIntent = new Intent(MainActivity.this, EventMainActivity.class);
+                startActivity(myIntent);
+
             }
         });
     }
     private void sendPostRequestOnClick(User newUser,View v){
         JsonPlaceHolderApi api = RetrofitUser.getRetrofitInstance().create(JsonPlaceHolderApi.class);
-        //Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Log.e(TAG,newUser.toString());
         Call<User> call = api.getUserInformation(newUser);
         call.enqueue(new Callback<User>() {

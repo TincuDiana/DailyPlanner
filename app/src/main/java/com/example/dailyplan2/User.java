@@ -21,11 +21,11 @@ public class User {
         }
 
         public void setFirstName(String firstName) {
-                this.firstName = firstName;
+                this.firstname = firstName;
         }
 
         public void setLastName(String lastName) {
-                this.lastName = lastName;
+                this.lastname = lastName;
         }
 
         public void setEmail(String email) {

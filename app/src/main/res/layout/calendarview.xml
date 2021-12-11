@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.409" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/myDate"
         android:layout_width="178dp"
         android:layout_height="46dp"
         android:fontFamily="casual"

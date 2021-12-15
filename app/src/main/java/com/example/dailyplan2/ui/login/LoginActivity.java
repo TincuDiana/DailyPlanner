@@ -1,44 +1,47 @@
 package com.example.dailyplan2.ui.login;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.dailyplan2.activity.CalendarActivity;
+import com.example.dailyplan2.JsonPlaceHolderApi;
+import com.example.dailyplan2.MainActivity;
 import com.example.dailyplan2.R;
-import com.example.dailyplan2.ui.login.LoginViewModel;
-import com.example.dailyplan2.ui.login.LoginViewModelFactory;
-import com.example.dailyplan2.databinding.ActivityLogin2Binding;
+import com.example.dailyplan2.RetrofitUser;
+import com.example.dailyplan2.model.User;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private LoginViewModel loginViewModel;
-    private ActivityLogin2Binding binding;
+    private static final String TAG = "LogInActivity" ;
+    //private LoginViewModel loginViewModel;
+    //private ActivityLogin2Binding binding;
+    public static User user;
+    public EditText usernameEditText;
+    public EditText passwordEditText;
+    public Button loginButton;
+    public Button signUpButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLogin2Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        //binding = ActivityLogin2Binding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_login2);
+        usernameEditText = (EditText) findViewById(R.id.username);
+        passwordEditText = (EditText) findViewById(R.id.password);
+        loginButton = (Button) findViewById(R.id.login);
+        signUpButton = (Button) findViewById(R.id.signUp);
+  /*
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
@@ -46,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+        final Button signUpButton = binding.signUp;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -113,17 +117,48 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+   */
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                JsonPlaceHolderApi api = RetrofitUser.getRetrofitInstance().create(JsonPlaceHolderApi.class);
+                Call<User> call = api.getUserByNameAndPassword(usernameEditText.getText().toString(),passwordEditText.getText().toString());
+                System.out.println("USER IN: " + usernameEditText.getText().toString() + passwordEditText.getText().toString());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        Log.e(TAG,"Works ");
+                        user = response.body();
+                        if(user != null)
+                        {
+                            Intent myIntent = new Intent(LoginActivity.this, CalendarActivity.class);
+                            startActivity(myIntent);
+                        }
+                        else
+                        {
+                            System.out.println("USER not found! Invalid credentials. :(");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        System.out.println("on failure");
+                    }
+                });
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG,"Register click");
+                Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(myIntent);
             }
         });
     }
 
+    /*
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
@@ -133,4 +168,6 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+
+     */
 }

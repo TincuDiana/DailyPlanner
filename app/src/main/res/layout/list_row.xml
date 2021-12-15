@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:layout_height="match_parent"
+    android:background="#D7CAEF"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/txtName"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Name"
+        android:textColor="@color/jacarta"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtLocation"
+        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtName"
+        android:layout_marginLeft="15dp"
+        android:maxLength="50"
+        android:singleLine="true"
+        android:text="Location"
+        android:textColor="#2D0368" />
+
+    <TextView
+        android:id="@+id/time"
+        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/txtName"
+        android:gravity="right"
+        android:text="Time"
+        android:textColor="#2D0665" />
+
+</RelativeLayout>

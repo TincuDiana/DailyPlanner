@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:layout_height="match_parent"
+    android:background="#D7CAEF"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/txtUserName"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Name"
+        android:textColor="@color/jacarta"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtUserName"
+        android:layout_marginLeft="15dp"
+        android:maxLength="50"
+        android:singleLine="true"
+        android:text="email"
+        android:textColor="#2D0368" />
+
+
+</RelativeLayout>

@@ -1,6 +1,4 @@
-package com.example.dailyplan2;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.dailyplan2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.dailyplan2.activity.CalendarActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dailyplan2.JsonPlaceHolderApi;
+import com.example.dailyplan2.R;
+import com.example.dailyplan2.RetrofitUser;
 import com.example.dailyplan2.model.User;
 
 import retrofit2.Call;
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.e(TAG,"Works " + newUser.getFirstname() + newUser.getLastname());
+                Log.e(TAG,"Works " + newUser.getFirstname()+ newUser.getLastname());
             }
 
             @Override

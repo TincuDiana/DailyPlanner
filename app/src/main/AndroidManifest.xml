@@ -12,20 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyPlan2"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
+            android:exported="true"
+            android:label="@string/title_activity_login">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
-        <activity android:name=".EventMainActivity" />
+        <activity android:name=".activity.CalendarActivity" />
+        <activity android:name=".activity.ToDoListActivity" />
+        <activity android:name=".activity.EventMainActivity" />
+        <activity android:name=".activity.Edit_task_pageActivity" />
+        <activity android:name=".activity.ViewEventActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.dailyplan2;
+package com.example.dailyplan2.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
+import com.example.dailyplan2.JsonPlaceHolderApi;
+import com.example.dailyplan2.R;
+import com.example.dailyplan2.RetrofitUser;
+import com.example.dailyplan2.model.Event;
 
 import retrofit2.Call;
 import retrofit2.Callback;

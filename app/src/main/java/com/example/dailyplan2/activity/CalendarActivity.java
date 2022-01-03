@@ -3,6 +3,7 @@ package com.example.dailyplan2.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -17,11 +18,13 @@ import com.example.dailyplan2.JsonPlaceHolderApi;
 import com.example.dailyplan2.R;
 import com.example.dailyplan2.RetrofitUser;
 import com.example.dailyplan2.model.Event;
+import com.example.dailyplan2.model.Task;
 import com.example.dailyplan2.model.User;
 import com.example.dailyplan2.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import retrofit2.Call;
@@ -35,6 +38,7 @@ public class CalendarActivity extends AppCompatActivity {
     public static List<Event> events;
     Button viewActivities;
     Button newEvent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +53,19 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 date = year + "-" + (month + 1) + "-" + dayOfMonth;
-                System.out.println(date);
+                System.out.println("DATA DIN CALENDAR" + date);
                 myDate.setText(date);
+                getRequest();
             }
         });
 
         viewActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getRequest();
+
                 Intent myIntent = new Intent(CalendarActivity.this, ToDoListActivity.class);
                 startActivity(myIntent);
+
             }
         });
 
@@ -69,6 +75,7 @@ public class CalendarActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(CalendarActivity.this, EventMainActivity.class);
                 startActivity(myIntent);
             }
+
         });
 
     }
@@ -84,8 +91,9 @@ public class CalendarActivity extends AppCompatActivity {
                 List<Event> resp = response.body();
                 events = new ArrayList<>();
                 List<Event> newTasks = resp.stream()
-                                .filter(event -> event.getData().equals(date))
-                                .collect(Collectors.toList());
+                        .filter(event -> event.getData().equals(date))
+                        .collect(Collectors.toList());
+
                 for (int i = 0; i < newTasks.size(); i++) {
                     for (User userX:newTasks.get(i).getUsersAttending()) {
                         if(userX.getId().equals(LoginActivity.user.getId())){
@@ -95,6 +103,7 @@ public class CalendarActivity extends AppCompatActivity {
                             break;
                         }
                     }
+
                 }
                 System.out.println("!!!!!TASKS");
                 for (int i = 0; i < events.size(); i++) {

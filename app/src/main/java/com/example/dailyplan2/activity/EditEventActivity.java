@@ -11,24 +11,21 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dailyplan2.JsonPlaceHolderApi;
-import com.example.dailyplan2.MainActivity;
 import com.example.dailyplan2.R;
 import com.example.dailyplan2.RetrofitUser;
 import com.example.dailyplan2.model.Event;
-import com.example.dailyplan2.model.Task;
 import com.example.dailyplan2.model.User;
 import com.example.dailyplan2.ui.login.LoginActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EventMainActivity extends AppCompatActivity {
-    private static final String TAG = "EventMainActivity" ;
+public class EditEventActivity extends AppCompatActivity {
+    private static final String TAG = "EditEventActivity" ;
     String eventName;
     String description;
     String data;
@@ -38,19 +35,21 @@ public class EventMainActivity extends AppCompatActivity {
     EditText dataInput;
     EditText locationInput;
     TextView textViewResult;
-    Button addEventButton;
+    Button editButton;
+    Button addTaskButton;
     public static Event event;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_create_event);
-        eventNameInput = findViewById(R.id.eventNameField);
-        textViewResult = findViewById(R.id.eventNameField);
-        descriptionInput = findViewById(R.id.descriptionField);
-        dataInput = findViewById(R.id.dateField);
-        locationInput = findViewById(R.id.locationField);
-        addEventButton = findViewById(R.id.createEventButton);
-        addEventButton.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.edit_event);
+        eventNameInput = findViewById(R.id.editEventNameField);
+        textViewResult = findViewById(R.id.editEventNameField);
+        descriptionInput = findViewById(R.id.editDescriptionField);
+        dataInput = findViewById(R.id.editDateField);
+        locationInput = findViewById(R.id.editLocationField);
+        editButton = findViewById(R.id.save_edit_button);
+        addTaskButton = findViewById(R.id.editAddTaskButton);
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 eventName = eventNameInput.getText().toString();
@@ -58,17 +57,31 @@ public class EventMainActivity extends AppCompatActivity {
                 data = dataInput.getText().toString();
                 location = locationInput.getText().toString();
                 sendPostRequestOnClick();
-                Intent myIntent = new Intent(EventMainActivity.this, CreateTaskActivity.class);
+            }
+        });
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(EditEventActivity.this, CreateTaskActivity.class);
                 startActivity(myIntent);
             }
         });
+
     }
+
+
 
     private void sendPostRequestOnClick(){
 
         JsonPlaceHolderApi api = RetrofitUser.getRetrofitInstance().create(JsonPlaceHolderApi.class);
-        event = new Event(eventName,description,data,location);
-        Call<Event> call = api.getEventInformation(event);
+//        event = new Event(eventName,description,data,location);
+        ToDoListActivity.currentEvent.setEventName(eventName);
+        System.out.println("name =========== " + eventName);
+        System.out.println("name from event ======= " + ToDoListActivity.currentEvent.getEventName());
+        ToDoListActivity.currentEvent.setDescription(description);
+        ToDoListActivity.currentEvent.setData(data);
+        ToDoListActivity.currentEvent.setLocation(location);
+        Call<Event> call = api.updateEvent(ToDoListActivity.currentEvent.getIdEvent(),ToDoListActivity.currentEvent);
         call.enqueue(new Callback<Event>() {
 
             @Override
@@ -86,7 +99,7 @@ public class EventMainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // this code will be executed after 2 seconds
-                Call<User> callForSecondTable =  api.populateUserEventTable(LoginActivity.user.getId(),event.getIdEvent());
+                Call<User> callForSecondTable =  api.populateUserEventTable(LoginActivity.user.getId(),ToDoListActivity.currentEvent.getIdEvent());
 
                 callForSecondTable.enqueue(new Callback<User>() {
                     @Override

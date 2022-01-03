@@ -14,6 +14,7 @@ import com.example.dailyplan2.JsonPlaceHolderApi;
 import com.example.dailyplan2.R;
 import com.example.dailyplan2.RetrofitUser;
 import com.example.dailyplan2.model.User;
+import com.example.dailyplan2.ui.login.LoginActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

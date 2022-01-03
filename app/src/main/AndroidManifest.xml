@@ -33,6 +33,8 @@
         <activity android:name=".activity.EventMainActivity" />
         <activity android:name=".activity.Edit_task_pageActivity" />
         <activity android:name=".activity.ViewEventActivity" />
+        <activity android:name=".activity.CreateTaskActivity" />
+        <activity android:name=".activity.EditEventActivity" />
     </application>
 
 </manifest>

@@ -33,7 +33,7 @@ public class ToDoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitiesview);
         listView = findViewById(R.id.listView);
-       // getRequest(idU, CalendarActivity.date);
+        // getRequest(idU, CalendarActivity.date);
         if(CalendarActivity.events != null) {
             EventAdapter adapter = new EventAdapter(this, R.layout.list_row, CalendarActivity.events);
             listView.setAdapter(adapter);

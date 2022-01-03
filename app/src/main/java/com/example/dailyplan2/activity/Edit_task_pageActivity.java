@@ -40,9 +40,9 @@ public class Edit_task_pageActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {
-                task = new Task(date.getText().toString(),description.getText().toString(),location.getText().toString());
-              sendUpdateRequestOnClick(v,task);
-              observable.notifyObservers();
+                // task = new Task(date.getText().toString(),description.getText().toString(),location.getText().toString());
+                sendUpdateRequestOnClick(v,task);
+                observable.notifyObservers();
             }
         });
     }

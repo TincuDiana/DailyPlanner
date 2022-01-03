@@ -2,21 +2,26 @@ package com.example.dailyplan2.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 
 public class Event {
-    private final UUID idEvent;
     private List<Task> taskList;
-    private final String eventName;
+    private String eventName;
     private List<User> usersAttending;
-    private final String description;
-    private final String data;
-    private final String location;
+    private String description;
+    private String data;
+    private String location;
+    private UUID idEvent;
+
+    @SerializedName("body")
+    String text;
+
 
     public Event(List<Task> taskList,String eventname, List<User> usersAttending, String description, String data,String location){
-        this.idEvent = UUID.randomUUID();
+
         this.taskList = taskList;
         this.eventName = eventname;
         this.usersAttending = usersAttending;
@@ -25,18 +30,23 @@ public class Event {
         this.location = location;
     }
 
-    public Event(UUID idEvent, String eventName, String description, String data, String location) {
-        this.idEvent = idEvent;
+    public Event(String eventName, String description, String data, String location) {
+        this.idEvent = UUID.randomUUID();
         this.eventName = eventName;
         this.description = description;
         this.data = data;
         this.location = location;
-        taskList = null;
-        usersAttending = null;
+        taskList = new ArrayList<>();
+        usersAttending = new ArrayList<>();
     }
+    public Event(){}
 
     public UUID getIdEvent() {
         return idEvent;
+    }
+
+    public void setIdEvent(UUID idEvent) {
+        this.idEvent = idEvent;
     }
 
     public List<Task> getTaskList() {
@@ -69,5 +79,21 @@ public class Event {
 
     public void setUsersAttending(List<User> usersAttending) {
         this.usersAttending = usersAttending;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

@@ -40,18 +40,29 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         TextView location = convertView.findViewById(R.id.txtLocation2);
         TextView time = convertView.findViewById(R.id.time2);
         TextView person = convertView.findViewById(R.id.person);
-        txtName.setText(getItem(position).getDescription());
+        txtName.setText(getItem(position).getDate());
         location.setText(getItem(position).getLocation());
         time.setText(getItem(position).getDate());
-        person.setText(userName(getItem(position).getIdUser()));
+        //person.setText(userName(getItem(position).getIdUser()));
+        person.setText(userName(getItem(position).getFirstName(), getItem(position).getLastName()));
+        //person.setText(getItem(position).getFirstName() + " " + getItem(position).getLastName());
         return convertView;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+   /* @RequiresApi(api = Build.VERSION_CODES.N)
     private String userName( UUID idUser){
         return ToDoListActivity.currentEvent.getUsersAttending()
                 .stream()
                 .filter(user -> user.getId().equals(idUser))
+                .map(user -> user.toString())
+                .reduce(" ",String::concat);
+    }*/
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private String userName( String firstName, String lastName){
+        return ToDoListActivity.currentEvent.getUsersAttending()
+                .stream()
+                .filter(user -> user.getFirstname().equals(firstName) && user.getLastname().equals(lastName))
                 .map(user -> user.toString())
                 .reduce(" ",String::concat);
     }

@@ -31,19 +31,18 @@
         tools:text="Sign Up" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/invalidCredentials"
         android:layout_width="147dp"
         android:layout_height="33dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="casual"
-        android:text="Daily Planner"
         android:textAlignment="center"
         android:textColor="#BB86FC"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
         android:id="@+id/username"

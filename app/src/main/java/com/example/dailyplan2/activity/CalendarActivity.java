@@ -65,7 +65,6 @@ public class CalendarActivity extends AppCompatActivity {
 
                 Intent myIntent = new Intent(CalendarActivity.this, ToDoListActivity.class);
                 startActivity(myIntent);
-
             }
         });
 

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     EditText emailInput;
     EditText passwordInput;
     TextView textViewResult;
-    Button signUpButton;
+    Button signUpButtonn;
     public static User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
         lastNameInput = (EditText) findViewById(R.id.editTextTextPersonName2);
         emailInput = (EditText) findViewById(R.id.editTextTextEmailAddress);
         passwordInput = (EditText) findViewById(R.id.editTextTextPassword);
-        signUpButton = (Button) findViewById(R.id.button4);
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+        signUpButtonn = (Button) findViewById(R.id.button4);
+        signUpButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
                 user = new User(firstNameInput.getText().toString(),lastNameInput.getText().toString(),emailInput.getText().toString(),passwordInput.getText().toString());
                 Log.e(TAG,user.toString());
+                Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
                 sendPostRequestOnClick(user,v);
-                Intent myIntent = new Intent(MainActivity.this, CalendarActivity.class);
                 startActivity(myIntent);
 
             }

@@ -9,12 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.dailyplan2.activity.CalendarActivity;
 import com.example.dailyplan2.JsonPlaceHolderApi;
-import com.example.dailyplan2.MainActivity;
 import com.example.dailyplan2.R;
 import com.example.dailyplan2.RetrofitUser;
+import com.example.dailyplan2.activity.MainActivity;
 import com.example.dailyplan2.model.User;
 
 import retrofit2.Call;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     public EditText passwordEditText;
     public Button loginButton;
     public Button signUpButton;
-
+    public TextView invalidCredentials;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.login);
         signUpButton = (Button) findViewById(R.id.signUp);
+        invalidCredentials = (TextView) findViewById(R.id.invalidCredentials);
   /*
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -137,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                         else
                         {
                             System.out.println("USER not found! Invalid credentials. :(");
+                            invalidCredentials.setText("Invalid credentials!");
                         }
                     }
 

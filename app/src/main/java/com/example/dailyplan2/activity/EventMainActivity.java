@@ -11,17 +11,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dailyplan2.JsonPlaceHolderApi;
-import com.example.dailyplan2.MainActivity;
 import com.example.dailyplan2.R;
 import com.example.dailyplan2.RetrofitUser;
 import com.example.dailyplan2.model.Event;
-import com.example.dailyplan2.model.Task;
 import com.example.dailyplan2.model.User;
 import com.example.dailyplan2.ui.login.LoginActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +45,8 @@ public class EventMainActivity extends AppCompatActivity {
         textViewResult = findViewById(R.id.eventNameField);
         descriptionInput = findViewById(R.id.descriptionField);
         dataInput = findViewById(R.id.dateField);
+        dataInput.setText(CalendarActivity.date);
+        System.out.println("DATA CALENDAR " + CalendarActivity.date);
         locationInput = findViewById(R.id.locationField);
         addEventButton = findViewById(R.id.createEventButton);
         addEventButton.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +54,7 @@ public class EventMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 eventName = eventNameInput.getText().toString();
                 description = descriptionInput.getText().toString();
+                //dataInput.setText(CalendarActivity.date);
                 data = dataInput.getText().toString();
                 location = locationInput.getText().toString();
                 sendPostRequestOnClick();
@@ -68,6 +68,7 @@ public class EventMainActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi api = RetrofitUser.getRetrofitInstance().create(JsonPlaceHolderApi.class);
         event = new Event(eventName,description,data,location);
+        CalendarActivity.events.add(event);
         Call<Event> call = api.getEventInformation(event);
         call.enqueue(new Callback<Event>() {
 

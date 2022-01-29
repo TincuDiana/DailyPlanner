@@ -40,6 +40,8 @@ public class CreateTaskActivity extends AppCompatActivity {
     EditText dataInput;
     EditText locationInput;
     Button addTaskButton;
+    Button doneButton;
+
     UUID id_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,19 @@ public class CreateTaskActivity extends AppCompatActivity {
         lastNameInput = findViewById(R.id.lastnametext);
         descriptionInput = findViewById(R.id.descriptiontext);
         dataInput = findViewById(R.id.datetext);
+        dataInput.setText(CalendarActivity.date);
+        System.out.println("DATA CALENDAR " + CalendarActivity.date);
         locationInput = findViewById(R.id.locationtext);
         addTaskButton = findViewById(R.id.createTaskButton);
+        doneButton = findViewById(R.id.doneButton);
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(CreateTaskActivity.this, CalendarActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,8 +76,6 @@ public class CreateTaskActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(CreateTaskActivity.this, CreateTaskActivity.class);
                 setUsersAttendingEvent(v);
                 startActivity(myIntent);
-
-
             }
         });
     }
@@ -72,6 +83,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
         JsonPlaceHolderApi api = RetrofitUser.getRetrofitInstance().create(JsonPlaceHolderApi.class);
         Task newTask = new Task(firstName, lastName, data, description,location);
+        //EventMainActivity.event.getTaskList().add(newTask);
         Call<Task> call = api.getTaskInformation(newTask);
         call.enqueue(new Callback<Task>() {
 

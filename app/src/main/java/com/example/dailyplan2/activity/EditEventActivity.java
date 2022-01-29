@@ -43,10 +43,14 @@ public class EditEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_event);
         eventNameInput = findViewById(R.id.editEventNameField);
+        eventNameInput.setText(ToDoListActivity.currentEvent.getEventName());
         textViewResult = findViewById(R.id.editEventNameField);
         descriptionInput = findViewById(R.id.editDescriptionField);
+        descriptionInput.setText(ToDoListActivity.currentEvent.getDescription());
         dataInput = findViewById(R.id.editDateField);
+        dataInput.setText(ToDoListActivity.currentEvent.getData());
         locationInput = findViewById(R.id.editLocationField);
+        locationInput.setText(ToDoListActivity.currentEvent.getLocation());
         editButton = findViewById(R.id.save_edit_button);
         addTaskButton = findViewById(R.id.editAddTaskButton);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,8 @@ public class EditEventActivity extends AppCompatActivity {
                 data = dataInput.getText().toString();
                 location = locationInput.getText().toString();
                 sendPostRequestOnClick();
+                Intent myIntent = new Intent(EditEventActivity.this, CalendarActivity.class);
+                startActivity(myIntent);
             }
         });
         addTaskButton.setOnClickListener(new View.OnClickListener() {

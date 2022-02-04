@@ -1,0 +1,7 @@
+app:
+   datasource:
+     jdbc-url: jdbc:postgresql://localhost:5432/dailyplandb
+     port : 5432
+     username: postgres
+     password: diana1.
+     poolsize: 30
